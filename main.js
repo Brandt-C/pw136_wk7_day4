@@ -43,14 +43,14 @@ getSong('flowers','Mile')
 
 let music = [
     {id:0, track: 'Flowers', artist: "Miley"},
-    {id:1, track: 'Flowers', artist: "Miley"},
-    {id:2, track: 'Flowers', artist: "Miley"},
-    {id:3, track: 'Flowers', artist: "Miley"},
-    {id:4, track: 'Flowers', artist: "Miley"},
-    {id:5, track: 'Flowers', artist: "Miley"},
-    {id:6, track: 'Flowers', artist: "Miley"},
-    {id:7, track: 'Flowers', artist: "Miley"},
-    {id:8, track: 'Flowers', artist: "Miley"}
+    {id:1, track: 'Pardon Me', artist: 'Incubus' },
+    {id:2, track: 'TNT', artist: 'AC-DC'},
+    {id:3, track: 'Burden in my hand', artist: 'Soundgarden' },
+    {id:4, track: 'Rats', artist: 'Pearl Jam' },
+    {id:5, track: 'Black', artist: 'Sevendust'},
+    {id:6, track: 'Bother', artist: 'Stone Sour'},
+    {id:7, track: 'The ghost of tom joad', artist: 'Rage against the machine'},
+    {id:8, track: 'Electric Worry', artist: 'Clutch'}
 ];
 
 let playing;
@@ -78,7 +78,7 @@ const setupTrackList = async () => {
 setupTrackList();
 
 
-const clickEvent = (id) => {
+let clickEvent = (id) => {
     console.log(id);
     let track = music[id.slice(-1)];
     console.log(track);
@@ -98,11 +98,12 @@ const clickEvent = (id) => {
     console.log(`PLAYING---> ${track.track} by ${track.artist}. . . `);
     track.preview_url.play();
     playing = track;
-    let playingbtn = document.getElementById(`playbtn${id}`);
+    let playingbtn = document.getElementById(`playbtn${playing.id}`);
+
     playingbtn.innerHTML = 'Pause';
     playingbtn.className = 'btn btn-dark';
 
-
+    stopbtn.disabled = false
     stopbtn.innerHTML = 'Pause';
     headertitle.innerHTML = `${track.track} | ${track.artist}`;
 
@@ -113,7 +114,18 @@ let pauseTrack = () => {
     playing.preview_url.pause();
 
     let playingbtn = document.getElementById(`playbtn${playing.id}`)
+
     playingbtn.innerHTML = 'Play';
+    playingbtn.className = 'btn btn-success'
+
+    stopbtn.diabled = true;
     stopbtn.innerHTML = 'Nothing playing';
+
     headertitle.innerHTML = ' PADAWANS!!! | SpottyAPI';
 }
+
+let btnShow = (id) => {
+    let btn = document.getElementById(`playbtn${id}`);
+    btn.hidden = false;
+}
+
